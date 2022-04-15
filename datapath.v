@@ -72,10 +72,10 @@ endmodule
 // 	end
 // 	endmodule
 
-module zero_padder(
-    input 
-)
-endmodule
+// module zero_padder(
+//     input 
+// )
+// endmodule
 
 module instr_mem(
     input[15:0] pc,
