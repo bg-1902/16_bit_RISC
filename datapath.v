@@ -1,8 +1,9 @@
 module alu(
-           input [15:0] A,B,                  
-           input [2:0] ALU_Sel,
-           output [15:0] ALU_Out,
-           output reg ZF);
+    input [15:0] A,B,                  
+    input [2:0] ALU_Sel,
+    output [15:0] ALU_Out,
+    output reg ZF
+    );
 
     reg [15:0] ALU_Result;
     assign ALU_Out = ALU_Result; // ALU out
@@ -52,10 +53,10 @@ endmodule
 // 	alu uut(.ALU_Out(out), .ZF(zero), .A(A), .B(B), .ALU_Sel(operation));
 // 	initial 
 // 	begin
-// 		       A = 16'b1000000000001000; B = 16'd3; operation = 3'd0; //1000000000000001
-// 		#10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd1;
+//         A = 16'b1000000000001000; B = 16'd3; operation = 3'd0; //1000000000000001
+//         #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd1;
 //         #10 A = 16'b1000000000001000; B = 16'b1000000000001000; operation = 3'd1;
-// 		#10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd2;
+//         #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd2;
 //         #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd3;
 //         #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd4;
 //         #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd5;
@@ -64,9 +65,41 @@ endmodule
         
 // 	end
 // 	initial begin
-//       $monitor("A=%b, B=%b, Output=%b, zero=%b",A,B,out,zero);
+//         $monitor("A=%b, B=%b, Output=%b, zero=%b",A,B,out,zero);
 //     end
 // 	initial begin
 // 		#300 $finish;
 // 	end
 // 	endmodule
+
+module zero_padder(
+    input 
+)
+endmodule
+
+module instr_mem(
+    input[15:0] pc,
+    output[15:0] instruction
+);
+
+    reg [16:0] memory [32767:0];
+    wire [14 : 0] address = pc[15 : 1];
+
+    assign instruction =  memory[address];
+
+endmodule
+
+module data_mem(
+    input[15:0] pc,
+    output[15:0] data
+);
+
+    reg [16:0] memory [32767:0];
+    wire [14 : 0] address = pc[15 : 1];
+
+    assign data =  memory[address];
+
+endmodule
+
+
+
