@@ -288,6 +288,49 @@ module Mux_4to1_16(Output, Input0, Input1, Input2, Input3, Select);
 
 endmodule
 
+module Datapath();
+    input clk;
+    input rst;
+
+    //PC signals
+    input wire PCWrite;
+    input wire PCWriteCond;
+    input wire BNEq;
+    
+    //mem
+    input wire MemRd;
+    input wire MemWr;
+    input wire IRd;
+    input wire IRWr;
+
+    //rf
+    input wire RegWrite;
+    input wire PCWrite_in;
+
+    // 2:1 Mux Control Signals
+    input wire RegDest;
+    input wire MemToReg;
+    input wire SESF;
+    input wire JE;
+    input wire ALUSrcA;
+
+    // 4:1 Mux Control Signals
+    input wire [1:0] R1Src;
+    input wire [1:0] ALUSrcB;
+    input wire [1:0] PCSrc;
+
+    //ALU
+    input wire [2:0] ALUCtrl;
+
+    //Internal Wires
+    
+
+
+
+
+
+endmodule
+
 
 
 
