@@ -2,11 +2,13 @@ module alu(
     input [15:0] A,B,                  
     input [2:0] ALU_Sel,
     output [15:0] ALU_Out,
-    output reg ZF
+    output Zero;
     );
 
+    reg ZF;
     reg [15:0] ALU_Result;
     assign ALU_Out = ALU_Result; // ALU out
+    assign Zero = ZF;
 
     always @(*)
     begin
@@ -42,40 +44,6 @@ module alu(
     end
 
 endmodule
-
-module tb_alu();
-	reg [15:0]A,B;
-	reg [2:0] operation;
-
-	wire [15:0]out;
-	wire zero;
-
-	alu uut(.ALU_Out(out), .ZF(zero), .A(A), .B(B), .ALU_Sel(operation));
-	initial 
-	begin
-        A = 16'b1000000000001000; B = 16'd3; operation = 3'd0; //1000000000000001
-        #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd1;
-        #10 A = 16'b1000000000001000; B = 16'b1000000000001000; operation = 3'd1;
-        #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd2;
-        #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd3;
-        #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd4;
-        #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd5;
-        #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd6;
-        #10 A = 16'b1000000000001000; B = 16'd3; operation = 3'd7;
-        
-	end
-	initial begin
-        $monitor("A=%b, B=%b, Output=%b, zero=%b",A,B,out,zero);
-    end
-	initial begin
-		#300 $finish;
-	end
-	endmodule
-
-// module zero_padder(
-//     input 
-// )
-// endmodule
 
 module SEx_8to16 (ext, unext);
     output reg [15:0] ext;
@@ -308,7 +276,7 @@ module Datapath();
     input wire PCWrite_in;
 
     // 2:1 Mux Control Signals
-    input wire RegDest;
+    input wire RegDst;
     input wire MemToReg;
     input wire SESF;
     input wire JE;
@@ -323,7 +291,181 @@ module Datapath();
     input wire [2:0] ALUCtrl;
 
     //Internal Wires
+
+    // Output Zero of ALU
+    wire Zero;
     
+    // Outputs of registers
+    wire [15:0] PC_out; 
+    wire [15:0] ALUOut_out; 
+    wire [15:0] IR_out;
+    wire [15:0] A_out; 
+    wire [15:0] B_out; 
+    wire [15:0] C_out;
+
+    // Outputs of memory blocks
+    wire [15:0] DataMem_out, InstrMem_out;
+
+    // Outputs of Register File
+    wire [15:0] ReadData1;
+    wire [15:0] ReadData2;
+    wire [15:0] ReadData3;
+
+    // Outputs of 2:1 mux blocks (4 bit data)
+    wire [3:0] RegDst_m_out;
+
+    // Outputs of 2:1 mux blocks (16 bit data)
+    wire [15:0] SESF_m_out;
+    wire [15:0] JE_m_out;
+    wire [15:0] MemToReg_m_out; 
+    wire [15:0] ALUSrcA_m_out;
+
+    // Outputs of 4:1 Mux Control Signals (4 bit data)
+    wire [3:0] R1Src_m_out;
+
+    // Outputs of 4:1 Mux Control Signals (16 bit data)
+    wire [15:0] ALUSrcB_m_out;
+    wire [15:0] PCSrc_m_out;
+
+    // Output of ALU
+    wire [15:0] ALU_out;
+
+    // Outputs of extenders
+    wire [15:0] ZP_8to16_out;
+    wire [15:0] SEx_12to16_out;
+    wire [15:0] SEx_8to16_out;
+    wire [15:0] LeftShift_out;
+
+    wire [3:0] Opcode, RA, RB, RC;
+    wire [1:0] RD_l, RP_l;
+
+    wire Branch;
+    wire ChangePC;
+
+    buf buf1 [15:0]({Opcode, RA, RB, RC},IR_out);
+    buf buf2 [3:0]({RD_l, RP_l}, IR_out[11:8]);
+
+    xnor xnor1(Branch, Zero, BranchEq);
+    and and1 (  ChangePC, Branch, PCWriteCond);
+    or or1   (  PCWrite_in, ChangePC, PCWrite);
+
+    reg_16_bit PC (.clk(clk),
+                    .Output(PC_out),
+                    .Input(PCSrc_m_out),
+                    .Write(PCWrite_in),
+                    .rst(rst));
+    
+    reg_16_bit IR (.clk(clk),
+                    .Output(IR_out),
+                    .Input(InstrMem_out),
+                    .Write(IRWr),
+                    .rst(rst));
+
+    reg_16_bit A ( .clk(clk),
+                    .Output(A_out),
+                    .Input(ReadData1),
+                    .Write(1'b1),
+                    .rst(rst));
+    reg_16_bit B ( .clk(clk),
+                    .Output(B_out),
+                    .Input(ReadData2),
+                    .Write(1'b1),
+                    .rst(rst));
+    reg_16_bit C ( .clk(clk),
+                    .Output(C_out),
+                    .Input(ReadData3),
+                    .Write(1'b1),
+                    .rst(rst));
+
+    reg_16_bit ALUOut (    .clk(clk),
+                            .Output(ALUOut_out),
+                            .Input(ALU_out),
+                            .Write(1'b1),
+                            .rst(rst));
+
+    RegisterFile RFile ( .clk(clk),
+                                .RegWrite(RegWr),
+                                .ReadReg1(R1Src_m_out),
+                                .ReadReg2(RC),
+                                .ReadReg3(RegDst_m_out),
+                                .WriteRegister(RegDst_m_out),
+                                .WriteData(MemToReg_m_out),
+                                .ReadData1(ReadData1),
+                                .ReadData2(ReadData2),
+                                .ReadData3(ReadData3));
+
+    alu ALU (   .A(ALUSrcA_m_out),
+                .B(ALUSrcB_m_out),
+                .ALU_Sel(ALUCtrl),
+                .ALU_Out(ALU_out),
+                .Zero(Zero));
+
+    Mux_2to1_4 RegDst_m(    .Output(RegDst_m_out),
+                            .Input0(RA),
+                            .Input1({2'b11, RD_l}),
+                            .Select(RegDst));
+
+    Mux_2to1_16 SESF_m( .Output(SESF_m_out),
+                        .Input0(ZP_8to16_out),
+                        .Input1(SEx_8to16_out),
+                        .Select(SESF));
+
+    Mux_2to1_16 JE_m(   .Output(JE_m_out),
+                        .Input0(SESF_m_out),
+                        .Input1(SEx_12to16_out),
+                        .Select(JE));
+
+    Mux_2to1_16 MemToReg_m(     .Output(MemToReg_m_out),
+                                .Input0(ALUOut_out),
+                                .Input1(DataMem_out),
+                                .Select(MemToReg));
+
+    Mux_2to1_16 ALUSrcA_m(  .Output(ALUSrcA_m_out),
+                            .Input0(PC_out),
+                            .Input1(A_out),
+                            .Select(ALUSrcA));
+
+    Mux_4to1_4 R1Src_m(     .Output(R1Src_m_out),
+                            .Input0({2'b10, RP_l}),
+                            .Input1(RB),
+                            .Input2(RA),
+                            .Input3(4'bx),
+                            .Select(R1Src));
+
+    Mux_4to1_16 ALUSrcB_m(  .Output(ALUSrcB_m_out),
+                            .Input0(B_out),
+                            .Input1(16'd2),
+                            .Input2(JE_m_out),
+                            .Input3(LeftShift_out),
+                            .Select(ALUSrcB));
+
+    Mux_4to1_16 PCSrc_m(.Output(PCSrc_m_out),
+                            .Input0(ALUOut_out),
+                            .Input1(C_out),
+                            .Input2(ALU_out),
+                            .Input3(16'bx),
+                            .Select(PCSrc));
+
+    SEx_8to16 sex1(.ext(SEx_8to16_out),
+                     .unext({RB, RC}));
+
+    SEx_12to16 sex2(.ext(SEx_12to16_out), 
+                    .unext({RA, RB, RC}));
+
+    ZP_8to16 zp1(.ext(ZP_8to16_out), 
+                .unext({RB, RC}));
+
+    LeftShift ls1(.Output(LeftShift_out), 
+                    .Input(SEx_8to16_out));
+
+    
+    
+
+    
+
+
+    
+
 
 
 
