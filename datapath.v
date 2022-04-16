@@ -77,29 +77,221 @@ module tb_alu();
 // )
 // endmodule
 
+module SEx_8to16 (ext, unext);
+    output reg [15:0] ext;
+    input [7:0] unext;
+
+    always@(*)
+    begin 
+        ext <= $signed(unext);
+    end
+endmodule
+
+module SEx_12to16 (ext, unext);
+    output reg [15:0] ext;
+    input [11:0] unext;
+
+    always@(*)
+    begin 
+        ext <= $signed(unext);
+    end
+endmodule
+
+module ZP_8to16 (ext, unext);
+    output reg [15:0] ext;
+    input [7:0] unext;
+
+    always@(*)
+    begin 
+        ext <= $unsigned(unext);
+    end
+endmodule
+
+module LeftShift (Output, Input);
+    output reg [15:0] Output;
+    input [15:0] Input;
+
+    always @(*) 
+    begin
+        Output <= {Input[15:1], 1'b0};
+    end
+endmodule
+
 module instr_mem(
+    input clk;
+    input IRd;
     input[15:0] pc,
+
     output[15:0] instruction
 );
 
-    reg [16:0] memory [32767:0];
+    reg [15:0] memory [0:32767];
     wire [14 : 0] address = pc[15 : 1];
 
-    assign instruction =  memory[address];
+    always @(posedge clk) begin
+        if(IRd == 1'b1) begin
+            instruction <= memory[address];
+        end
+    end
 
 endmodule
 
 module data_mem(
+    input clk;
     input[15:0] pc,
+    input [15:0] WrData;
+    input MemRd, MemWr;
     output[15:0] data
 );
 
-    reg [16:0] memory [32767:0];
+    reg [15:0] memory [0:32767];
     wire [14 : 0] address = pc[15 : 1];
 
-    assign data =  memory[address];
+    always @(posedge clk) begin
+        if(MemRd == 1'b1) begin
+            data <= memory[address];
+        end
+    end
+
+    always @(posedge clk) begin
+        if(MemWr == 1'b1) begin
+            memory[address] <= WrData;
+        end
+    end
 
 endmodule
+
+module reg_16_bit(clk, Output, Input, Write, rst);
+
+    input clk, Write, rst;
+    input [15:0] Input;
+
+    output reg [15:0] Output;
+    
+    initial begin
+        Output <= 16'd0;
+    end
+
+    always @(negedge clk) begin
+        if(rst == 1'b1) begin
+            Output <= 16'd0;
+        end
+        else if(Write == 1'b1)
+            Output <= Input;
+    end
+
+endmodule
+
+module regFile(clk, RegWrite, ReadReg1, ReadReg2, ReadReg3, WriteRegister, WriteData, ReadData1, ReadData2, ReadData3);
+
+    input clk;
+    input RegWrite;
+    input [15:0] WriteData;
+    input [3:0] ReadReg1, ReadReg2, ReadReg3, WriteRegister;
+
+    output reg [15:0] ReadData1, ReadData2, ReadData3;
+
+    reg [15:0] Registers [0:15];
+
+    initial begin
+        Registers[0] <= 16'd0;
+        // #`STOPTIME $writememh("registers.dat", Registers);
+    end
+
+
+    always @(posedge clk) begin
+        if(RegWrite == 1'b1) begin
+            if(WriteRegister == 4'd0) begin
+                Registers[0] <= 16'd0;
+            end
+            else begin
+                Registers[WriteRegister] <= WriteData;
+            end
+        end
+    end
+
+    always @(*) begin
+        ReadData1 <= Registers[ReadReg1];
+        ReadData2 <= Registers[ReadReg2];
+        ReadData3 <= Registers[ReadReg3];
+    end
+
+endmodule
+
+module Mux_2to1_4 (Output, Input0, Input1, Select);
+
+    input Select;
+    input [3:0] Input0, Input1;
+
+    output reg [3:0] Output;
+    initial begin
+            Output <= 4'd0;
+    end
+    always @(*) begin
+       if(Select == 1'b0)  Output <= Input0;
+       else if(Select == 1'b1)    Output <= Input1;
+       else Output <= 4'bxxxx;
+    end
+
+endmodule
+
+module Mux_2to1_16 (Output, Input0, Input1, Select);
+
+    input Select;
+    input [15:0] Input0, Input1;
+
+    output reg [15:0] Output;
+    initial begin
+        Output <= 16'd0;
+    end
+    always @(*) begin
+       if(Select == 1'b0)  Output <= Input0;
+       else if(Select == 1'b1)    Output <= Input1;
+       else Output <= 16'bxxxxxxxxxxxxxxxx;
+    end
+
+endmodule
+
+module Mux_4to1_4(Output, Input0, Input1, Input2, Input3, Select);
+    input [1:0] Select;
+    input [3:0] Input0, Input1, Input2, Input3;
+
+    output reg [3:0] Output;
+    initial begin
+        Output <= 4'd0;
+    end
+    always @(*) begin
+       if(Select == 2'b00)  Output <= Input0;
+       else if(Select == 2'b01)    Output <= Input1;
+       else if(Select == 2'b10)    Output <= Input2;
+       else if(Select == 2'b11)    Output <= Input3;
+       else Output <= 4'bxxxx;
+    end
+
+endmodule
+
+module Mux_4to1_16(Output, Input0, Input1, Input2, Input3, Select);
+    input [1:0] Select;
+    input [15:0] Input0, Input1, Input2, Input3;
+
+    output reg [15:0] Output;
+    initial begin
+        Output <= 16'd0;
+    end
+    always @(*) begin
+       if(Select == 2'b00)  Output <= Input0;
+       else if(Select == 2'b01)    Output <= Input1;
+       else if(Select == 2'b10)    Output <= Input2;
+       else if(Select == 2'b11)    Output <= Input3;
+       else Output <= 16'bxxxx;
+    end
+
+endmodule
+
+
+
+
+
 
 
 
