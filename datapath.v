@@ -29,6 +29,7 @@ module tb_multi_cycle();
     // Defining wires for testbench from uut, done only for ease of access purposes
     wire [15:0] Instruction;
     wire [4:0] State;
+    wire [4:0] OpCode;
     assign Instruction = uut.Datapath.IR_out;
     assign State = uut.ControlUnit.State;
     assign OpCode = Instruction[15:12];
@@ -49,7 +50,7 @@ module tb_multi_cycle();
             if (Instruction[15:12] == 4'b0011)  $write("\t(Jump)");
             else if (Instruction[15:12] == 4'b0001)  $write("\t(Load)");
             else if (Instruction[15:12] == 4'b0010)  $write("\t(Store)");
-            else if(OpCode == 4'b1000 || OpCode == 4'b1100 || OpCode == 4'b1011 || OpCode == 4'b1111 || OpCode == 4'b0100 || OpCode == 4'b0101) $write("\t(R type)");
+            else if(Instruction[15:12] == 4'b1000 || OpCode == 4'b1100 || OpCode == 4'b1011 || OpCode == 4'b1111 || OpCode == 4'b0100 || OpCode == 4'b0101) $write("\t(R type)");
             else if (OpCode == 4'b1001 || OpCode == 4'b1101 || OpCode == 4'b0111 || OpCode == 4'b0110 || OpCode == 4'b1010 || OpCode == 4'b1110) $write("\t(I type)");
             else $write("\t(Shift)");
 
@@ -76,7 +77,7 @@ module tb_multi_cycle();
             end
             else if(OpCode == 4'b0000)
             begin
-                $write("\tRD (R%0d): %hH \ttImmediate Data: %hH \tFunc Field:%b", uut.Datapath.RFile.ReadReg1, uut.Datapath.A_out, uut.DataPath.IR_out[7:4], uut.Datapath.Func);
+                $write("\tRD (R%0d): %hH \ttImmediate Data: %hH \tFunc Field:%b", uut.Datapath.RFile.ReadReg1, uut.Datapath.A_out, uut.Datapath.IR_out[7:4], uut.Datapath.Func);
             end
             else if(OpCode == 4'b0001 ||OpCode == 4'b0010)
             begin
@@ -218,6 +219,16 @@ endmodule
 module ZP_8to16 (ext, unext);
     output reg [15:0] ext;
     input [7:0] unext;
+
+    always@(*)
+    begin 
+        ext <= $unsigned(unext);
+    end
+endmodule
+
+module ZP_4to16 (ext, unext);
+    output reg [15:0] ext;
+    input [3:0] unext;
 
     always@(*)
     begin 
@@ -446,7 +457,7 @@ module Datapath(clk, rst, PCWrite, PCWriteCond, BNEq, MemRd, MemWr, IRd, IRWr, R
     // 2:1 Mux Control Signals
     input wire RegDst;
     input wire MemToReg;
-    input wire SESF;
+    
     input wire JE;
     input wire ALUSrcA;
 
@@ -454,6 +465,7 @@ module Datapath(clk, rst, PCWrite, PCWriteCond, BNEq, MemRd, MemWr, IRd, IRWr, R
     input wire [1:0] R1Src;
     input wire [1:0] ALUSrcB;
     input wire [1:0] PCSrc;
+    input wire [1:0] SESF;
 
     //ALU
     input wire [2:0] ALUCtrl;
@@ -504,6 +516,7 @@ module Datapath(clk, rst, PCWrite, PCWriteCond, BNEq, MemRd, MemWr, IRd, IRWr, R
 
     // Outputs of extenders
     wire [15:0] ZP_8to16_out;
+    wire [15:0] ZP_4to16_out;
     wire [15:0] SEx_12to16_out;
     wire [15:0] SEx_8to16_out;
     wire [15:0] LeftShift_out;
@@ -599,9 +612,11 @@ module Datapath(clk, rst, PCWrite, PCWriteCond, BNEq, MemRd, MemWr, IRd, IRWr, R
                             .Input1({2'b11, RD_l}),
                             .Select(RegDst));
 
-    Mux_2to1_16 SESF_m( .Output(SESF_m_out),
+    Mux_4to1_16 SESF_m( .Output(SESF_m_out),
                         .Input0(ZP_8to16_out),
                         .Input1(SEx_8to16_out),
+                        .Input2(ZP_4to16_out),
+                        .Input3(16'bx),
                         .Select(SESF));
 
     Mux_2to1_16 JE_m(   .Output(JE_m_out),
@@ -649,6 +664,9 @@ module Datapath(clk, rst, PCWrite, PCWriteCond, BNEq, MemRd, MemWr, IRd, IRWr, R
     ZP_8to16 zp1(.ext(ZP_8to16_out), 
                 .unext({RB, RC}));
 
+    ZP_4to16 zp2(.ext(ZP_4to16_out),
+                .unext(RB));
+
     LeftShift ls1(.Output(LeftShift_out), 
                     .Input(SEx_8to16_out));
 endmodule
@@ -662,8 +680,8 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
     input [3:0] OpCode;
     input [3:0] Func;
     
-    output reg IRd, ALUSrcA, PCWrite, IRWr, SESF, PCWriteCond, MemRd, MemWr, MemToReg, RegWr, RegDst, JE, BNEq;
-    output reg [1:0] ALUSrcB,R1Src, PCSrc;
+    output reg IRd, ALUSrcA, PCWrite, IRWr, PCWriteCond, MemRd, MemWr, MemToReg, RegWr, RegDst, JE, BNEq;
+    output reg [1:0] ALUSrcB,R1Src, PCSrc, SESF;
     output reg [2:0] ALU; 
 
     reg [4:0] State, NextState;
@@ -787,7 +805,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 PCSrc <= 2'd2;
                 R1Src <= 2'b00;
                 IRWr <= 1'b1;
-                SESF <= 1'b0;
+                SESF <= 2'b0;
                 PCWriteCond <= 1'b0;
                 MemRd <= 1'b0;
                 MemWr <= 1'b0;
@@ -1024,7 +1042,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
             //     RegDst <= 1'b0;
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b10;
-                SESF <= 1'b0;
+                SESF <= 2'b0;
                 ALU <= 3'b000;
             end
             5'd11: begin
@@ -1035,7 +1053,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // PCSrc <= 1'b0;
                 // R1Src <= 2'b00;
                 // R2Src <= 1'b0;
-                // SESF <= 1'b0;
+                // SESF <= 2'b0;
                 // PCWriteCond <= 1'b0;
                 // MemRd <= 1'b0;
                 // MemWr <= 1'b0;
@@ -1045,7 +1063,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // RegDst <= 1'b0;
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b10;
-                SESF <= 1'b1;
+                SESF <= 2'b1;
                 ALU <= 3'b000;
             end
             5'd12: begin
@@ -1056,7 +1074,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // PCSrc <= 1'b0;
                 // R1Src <= 2'b00;
                 // R2Src <= 1'b0;
-                // SESF <= 1'b0;
+                // SESF <= 2'b0;
                 // PCWriteCond <= 1'b0;
                 // MemRd <= 1'b0;
                 // MemWr <= 1'b0;
@@ -1066,7 +1084,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // RegDst <= 1'b0;
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b10;
-                SESF <= 1'b0;
+                SESF <= 2'b0;
                 ALU <= 3'b001;
             end
             5'd13: begin
@@ -1077,7 +1095,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // PCSrc <= 1'b0;
                 // R1Src <= 2'b00;
                 // R2Src <= 1'b0;
-                // SESF <= 1'b0;
+                // SESF <= 2'b0;
                 // PCWriteCond <= 1'b0;
                 // MemRd <= 1'b0;
                 // MemWr <= 1'b0;
@@ -1087,7 +1105,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // RegDst <= 1'b0;
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b10;
-                SESF <= 1'b1;
+                SESF <= 2'b1;
                 ALU <= 3'b001;
             end
             5'd14: begin
@@ -1098,7 +1116,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // PCSrc <= 1'b0;
                 // R1Src <= 2'b00;
                 // R2Src <= 1'b0;
-                // SESF <= 1'b0;
+                // SESF <= 2'b0;
                 // PCWriteCond <= 1'b0;
                 // MemRd <= 1'b0;
                 // MemWr <= 1'b0;
@@ -1108,7 +1126,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // RegDst <= 1'b0;
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b10;
-                SESF <= 1'b1;
+                SESF <= 2'b1;
                 ALU <= 3'b110;
             end
             5'd15: begin
@@ -1119,7 +1137,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // PCSrc <= 1'b0;
                 // R1Src <= 2'b00;
                 // R2Src <= 1'b0;
-                // SESF <= 1'b0;
+                // SESF <= 2'b0;
                 // PCWriteCond <= 1'b0;
                 // MemRd <= 1'b0;
                 // MemWr <= 1'b0;
@@ -1129,7 +1147,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // RegDst <= 1'b0;
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b10;
-                SESF <= 1'b1;
+                SESF <= 2'b1;
                 ALU <= 3'b101;
             end
             5'd16: begin
@@ -1150,7 +1168,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // RegDst <= 1'b0;
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b10;
-                SESF <= 1'b0;
+                SESF <= 2'b10;
                 ALU <= 3'b010;
             end
             5'd17: begin
@@ -1171,7 +1189,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // RegDst <= 1'b0;
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b10;
-                SESF <= 1'b0;
+                SESF <= 2'b10;
                 ALU <= 3'b011;
             end
             5'd18: begin
@@ -1192,7 +1210,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // RegDst <= 1'b0;
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b10;
-                SESF <= 1'b0;
+                SESF <= 2'b10;
                 ALU <= 3'b100;
             end
             5'd19: begin
@@ -1232,7 +1250,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // RegWr <= 1'b0;
                 // RegDst <= 1'b0;
                 ALUSrcA <= 1'b0;
-                SESF <= 1'b1;
+                SESF <= 2'b1;
                 ALUSrcB <= 2'b10;
                 ALU <= 3'b000;
                 PCSrc <= 1'b0;
@@ -1329,9 +1347,9 @@ endmodule
 module MIPS(clk, rst);
     input clk, rst;
 
-    wire IRd, ALUSrcA, PCWrite, IRWr, SESF, PCWriteCond, MemRd, MemWr, MemToReg, RegWr, RegDst, JE, BNEq;
+    wire IRd, ALUSrcA, PCWrite, IRWr, PCWriteCond, MemRd, MemWr, MemToReg, RegWr, RegDst, JE, BNEq;
 
-    wire [1:0] ALUSrcB,R1Src, PCSrc;
+    wire [1:0] ALUSrcB,R1Src, PCSrc, SESF;
     wire reg [2:0] ALUCtrl;
 
     wire [3:0] OpCode;
