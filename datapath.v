@@ -96,7 +96,11 @@ module instr_mem(
     reg [15:0] memory [0:32767];
     wire [14 : 0] address = pc[15 : 1];
 
-    always @(posedge clk) begin
+    initial begin
+        $readmemh("instruction.dat", Memory);
+    end
+
+    always @(*) begin
         if(IRd == 1'b1) begin
             instruction <= memory[address];
         end
@@ -104,29 +108,72 @@ module instr_mem(
 
 endmodule
 
+// module data_mem(
+//     input clk,
+//     input[15:0] pc,
+//     input [15:0] WrData,
+//     input MemRd, MemWr,
+//     output[15:0] data;
+// );
+
+//     reg [15:0] memory [0:32767];
+//     wire [14 : 0] address = pc[15 : 1];
+
+//     always @(posedge clk) begin
+//         if(MemRd == 1'b1) begin
+//             data <= memory[address];
+//         end
+//     end
+
+//     always @(posedge clk) begin
+//         if(MemWr == 1'b1) begin
+//             memory[address] <= WrData;
+//         end
+//     end
+
+// endmodule
+
 module data_mem(
     input clk,
-    input[15:0] pc,
-    input [15:0] WrData,
-    input MemRd, MemWr,
-    output[15:0] data;
+    input[15:0] Address,
+    input [15:0] WriteData,
+    input MemRead, MemWrite,
+    output[15:0] MemData;
 );
 
-    reg [15:0] memory [0:32767];
-    wire [14 : 0] address = pc[15 : 1];
+    input clk;
+    input [15:0] Address;
+    input [15:0] WriteData;
+    input MemRead, MemWrite;
 
-    always @(posedge clk) begin
-        if(MemRd == 1'b1) begin
-            data <= memory[address];
+    reg [14:0] ActualAddress;
+
+    output reg [15:0] MemData;
+
+    always @(*) begin
+        ActualAddress <= Address[15:1];
+    end
+    // 16-bit x 32K locations
+    // !NOTE: The LSB of Address is dropped, therefore only aligned data is read
+    reg [15:0] Memory [0:(32*1024) - 1];
+
+    initial begin
+        $readmemh("data.dat", Memory);
+        #`STOPTIME $writememh("data.dat", Memory);
+    end
+
+    always @(*) begin
+        if(MemRead == 1'b1) begin
+            MemData <= Memory[ActualAddress];
         end
     end
 
-    always @(posedge clk) begin
-        if(MemWr == 1'b1) begin
-            memory[address] <= WrData;
+    always @(negedge clk) begin
+        if(MemWrite == 1'b1) begin
+            Memory[ActualAddress] <= WriteData;
         end
     end
-
+    
 endmodule
 
 module reg_16_bit(clk, Output, Input, Write, rst);
@@ -256,7 +303,7 @@ module Mux_4to1_16(Output, Input0, Input1, Input2, Input3, Select);
 
 endmodule
 
-module Datapath();
+module Datapath(clk, rst, PCWrite, PCWriteCond, BNEq, MemRd, MemWr, IRd, IRWr, RegWrite, PCWrite_in, RegDst, MemToReg, SESF, JE, ALUSrcA, R1Src, ALUSrcB, PCSrc, ALUCtrl, OpCode, Func);
     input clk;
     input rst;
 
@@ -289,6 +336,9 @@ module Datapath();
 
     //ALU
     input wire [2:0] ALUCtrl;
+
+    output wire [3:0] OpCode;
+    output wire [3:0] Func;
 
     //Internal Wires
 
@@ -382,6 +432,19 @@ module Datapath();
                             .Input(ALU_out),
                             .Write(1'b1),
                             .rst(rst));
+
+
+    instr_mem InstrMem (    .clk(clk),
+                                    .pc(PC_out),
+                                    .instruction(InstrMem_out),
+                                    .IRd(IRd));
+
+    data_mem DataMem (    .clk(clk),
+                            .Address(ALUOut_out),
+                            .WriteData(C_out),
+                            .MemData(DataMem_out),
+                            .MemRead(MemRd),
+                            .MemWrite(MemWr));
 
     RegisterFile RFile ( .clk(clk),
                                 .RegWrite(RegWr),
@@ -1117,5 +1180,69 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
     end
 
 endmodule
+
+module MIPS(clk, rst);
+
+input clk, rst;
+
+wire IRd, ALUSrcA, PCWrite, PCSrc, R2Src, SESF, PCWriteCond, MemRd, MemWr, MemToReg, RegWr, RegDst, JE, BNEq;
+
+wire [1:0] ALUSrcB,R1Src;
+wire reg [2:0] ALUCtrl;
+
+wire [3:0] OpCode;
+wire [3:0] Func;
+
+Datapath Datapath ( .clk(clk)
+                    .rst(rst),
+                    .PCWrite(PCWrite),
+                    .PCWriteCond(PCWriteCond),
+                    .BNEq(BNEq),
+                    .MemRd(MemRd),
+                    .MemWr(MemWr),
+                    .IRd(IRd),
+                    .IRWr(IRWr),
+                    .RegWrite(RegWrite),
+                    .PCWrite_in(PCWrite_in),
+                    .RegDst(RegDst),
+                    .MemToReg(MemToReg),
+                    .SESF(SESF),
+                    .JE(JE),
+                    .ALUSrcA(ALUSrcA),
+                    .R1Src(R1Src),
+                    .ALUSrcB(ALUSrcB),
+                    .PCSrc(PCSrc),
+                    .ALUCtrl(ALUCtrl),
+                    .OpCode(OpCode),
+                    .Func(Func)
+                    );
+
+
+
+Control ControlUnit ( .clk(clk)
+                    .rst(rst),
+                    .PCWrite(PCWrite),
+                    .PCWriteCond(PCWriteCond),
+                    .BNEq(BNEq),
+                    .MemRd(MemRd),
+                    .MemWr(MemWr),
+                    .IRd(IRd),
+                    .IRWr(IRWr),
+                    .RegWrite(RegWrite),
+                    .PCWrite_in(PCWrite_in),
+                    .RegDst(RegDst),
+                    .MemToReg(MemToReg),
+                    .SESF(SESF),
+                    .JE(JE),
+                    .ALUSrcA(ALUSrcA),
+                    .R1Src(R1Src),
+                    .ALUSrcB(ALUSrcB),
+                    .PCSrc(PCSrc),
+                    .ALU(ALUCtrl),
+                    .OpCode(OpCode),
+                    .Func(Func));
+
+endmodule
+
 
 
