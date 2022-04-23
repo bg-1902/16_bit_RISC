@@ -105,11 +105,11 @@ module instr_mem(
 endmodule
 
 module data_mem(
-    input clk;
+    input clk,
     input[15:0] pc,
-    input [15:0] WrData;
-    input MemRd, MemWr;
-    output[15:0] data
+    input [15:0] WrData,
+    input MemRd, MemWr,
+    output[15:0] data;
 );
 
     reg [15:0] memory [0:32767];
@@ -457,26 +457,626 @@ module Datapath();
 
     LeftShift ls1(.Output(LeftShift_out), 
                     .Input(SEx_8to16_out));
-
-    
-    
-
-    
-
-
-    
-
-
-
-
-
-
 endmodule
 
 
+// ! posedge clk
+module Control(clk, rst, OpCode, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1Src, R2Src, SESF, PCWriteCond, MemRd, MemWr, MemToReg, ALU, RegWr, RegDst, BNEq, JE);
+    
+    input clk;
+    input rst;
+    input [3:0] OpCode;
+    
+    output reg IRd, ALUSrcA, PCWrite, PCSrc, R2Src, SESF, PCWriteCond, MemRd, MemWr, MemToReg, RegWr, RegDst, JE, BNEq;
+    output reg [1:0] ALUSrcB,R1Src;
+    output reg [2:0] ALU; 
 
+    reg [4:0] State, NextState;
 
+    always @(posedge clk) begin
+        if(rst == 1'b1) begin
+            State <= 4'd0;
+        end
+        else State <= NextState;
+    end
 
+    always @(*) begin
+        case (State)
+            4'd0: begin
+                if(OpCode == 4'b1000 || OpCode == 4'b1100 || OpCode == 4'b1011 || OpCode == 4'b1111 || OpCode == 4'b0100 || OpCode == 4'b0101 || OpCode == 4'b0011) NextState <= 4'd1;
+                else if(OpCode == 4'b1001 || OpCode == 4'b1101 || OpCode == 4'b0111 || OpCode == 4'b0110 || OpCode == 4'b1010 || OpCode == 4'b1110 ||OpCode == 4'b0000) NextState <= 4'd4;
+                else NextState <= 4'd9;
+            end
+            4'd1: begin
+                if(OpCode == 4'b0100)   NextState <= 4'd14;
+                else if(OpCode == 4'b0101)  NextState <= 4'd15;
+                else if(OpCode == 4'b0011)  NextState <= 4'd8;
+                else NextState <= 4'd2;
+            end
+            4'd2: begin
+                NextState <= 4'd3;
+            end
+            4'd3: begin
+                NextState <= 4'd0;
+            end
+            4'd4: begin
+                if(OpCode == 4'b0000) NextState <= 4'd7;
+                else if(OpCode == 4'b1010 || OpCode == 4'b1110) NextState <= 4'd6;
+                else NextState <= 4'd5;
+            end
+            4'd5: begin
+                NextState <= 4'd3;
+            end
+            4'd6: begin
+                NextState <= 4'd3;
+            end
+            4'd7: begin
+                NextState <= 4'd3;
+            end
+            4'd8: begin
+                NextState <= 4'd0;
+            end
+            4'd9: begin
+                NextState <= 4'd10;
+            end
+            4'd10: begin
+                if(OpCode == 4'd0001)   NextState <= 4'd11;
+                else    NextState <= 4'd13;
+            end
+            4'd11: begin
+                NextState <= 4'd12;
+            end
+            4'd12: begin
+                NextState <= 4'd0;
+            end
+            4'd13: begin
+                NextState <= 4'd0;
+            end
+            4'd14: begin
+                NextState <= 4'd0;
+            end
+            4'd15: begin
+                NextState <= 4'd0;
+            end
+        endcase
+    end
 
+    initial begin
+        State <= 4'd0;
+    end
+
+    always @(State) begin
+        case (State)
+            4'd0: begin
+                IRd <= 1'b1;
+                ALUSrcA <= 1'b0;
+                ALUSrcB <= 2'b01;
+                PCWrite <= 1'b1;
+                PCSrc <= 1'b0;
+                R1Src <= 2'b00;
+                R2Src <= 1'b0;
+                SESF <= 1'b0;
+                PCWriteCond <= 1'b0;
+                MemRd <= 1'b0;
+                MemWr <= 1'b0;
+                MemToReg <= 1'b0;
+                ALU <= 3'b000;
+                RegWr <= 1'b0;
+                RegDst <= 1'b0;
+                BNEq <= 1'b0;
+                JE <= 1'b0;
+            end
+            4'd1: begin
+                // IRd <= 1'b0;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b0;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b01;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                // BNEq <= 1'b0;
+                // JE <= 1'b1;
+                IRd <= 1'b0;
+                PCWrite <= 1'b0;
+                R1Src <= 2'b01;
+                JE <= 1'b1;
+            end
+            4'd2: begin
+                // IRd <= 1'b0;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b0;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b10;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                // BNEq <= 1'b0;
+                // JE <= 1'b0;
+                IRd <= 1'b0;
+                PCWrite <= 1'b0;
+                R1Src <= 2'b10;
+            end
+            4'd3: begin
+                // IRd <= 1'b0;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b0;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                // BNEq <= 1'b0;
+                // JE <= 1'b0;
+                IRd <= 1'b0;
+                PCWrite <= 1'b0;
+                R1Src <= 2'b00;
+            end
+            4'd4: begin
+                // IRd <= 1'b0;
+                // ALUSrcA <= 1'b1;
+                // ALUSrcB <= 2'b00;
+                // PCWrite <= 1'b0;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b110;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                // BNEq <= 1'b0;
+                // JE <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b00;
+                ALU <= 3'b110;
+            end
+            4'd5: begin
+                // IRd <= 1'b0;
+                // ALUSrcA <= 1'b1;
+                // ALUSrcB <= 2'b00;
+                // PCWrite <= 1'b0;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b101;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                // BNEq <= 1'b0;
+                // JE <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b00;
+                ALU <= 3'b101;
+            end
+            4'd6: begin
+                // IRd <= 1'b0;
+                // ALUSrcA <= 1'b1;
+                // ALUSrcB <= 2'b00;
+                // PCWrite <= 1'b0;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                // BNEq <= 1'b0;
+                // JE <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b00;
+                ALU <= 3'b000;
+            end
+            4'd7: begin
+                // IRd <= 1'b0;
+                // ALUSrcA <= 1'b1;
+                // ALUSrcB <= 2'b00;
+                // PCWrite <= 1'b0;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b001;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                // BNEq <= 1'b0;
+                // JE <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b00;
+                ALU <= 3'b001;
+            end
+            4'd8: begin
+                // IRd <= 1'b0;
+                // ALUSrcA <= 1'b1;
+                // ALUSrcB <= 2'b00;
+                // PCWrite <= 1'b0;
+                // PCSrc <= 1'b1;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b1;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b001;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                // BNEq <= 1'b1;
+                // JE <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b00;
+                ALU <= 3'b001;
+                PCSrc <= 1'b1;
+                PCWriteCond = 1'b1;
+                BNEq = 1'b1;
+                RegDst = 1'b0;
+            end
+            4'd9: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b00;
+                ALU <= 3'b001;
+                PCSrc <= 1'b1;
+                PCWriteCond = 1'b1;
+                BNEq = 1'b0;
+                RegDst = 1'b0;
+            end
+            4'd10: begin
+            //    IRd <= 1'b1;
+            //     ALUSrcA <= 1'b0;
+            //     ALUSrcB <= 2'b01;
+            //     PCWrite <= 1'b1;
+            //     PCSrc <= 1'b0;
+            //     R1Src <= 2'b00;
+            //     R2Src <= 1'b0;
+            //     SESF <= 1'b0;
+            //     PCWriteCond <= 1'b0;
+            //     MemRd <= 1'b0;
+            //     MemWr <= 1'b0;
+            //     MemToReg <= 1'b0;
+            //     ALU <= 3'b000;
+            //     RegWr <= 1'b0;
+            //     RegDst <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b10;
+                SESF <= 1'b0;
+                ALU <= 3'b000;
+            end
+            4'd11: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b10;
+                SESF <= 1'b1;
+                ALU <= 3'b000;
+            end
+            4'd12: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b10;
+                SESF <= 1'b0;
+                ALU <= 3'b001;
+            end
+            4'd13: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b10;
+                SESF <= 1'b1;
+                ALU <= 3'b001;
+            end
+            4'd14: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b10;
+                SESF <= 1'b1;
+                ALU <= 3'b110;
+            end
+            4'd15: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b10;
+                SESF <= 1'b1;
+                ALU <= 3'b101;
+            end
+            4'd16: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b10;
+                SESF <= 1'b0;
+                ALU <= 3'b010;
+            end
+            4'd17: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b10;
+                SESF <= 1'b0;
+                ALU <= 3'b011;
+            end
+            4'd18: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                ALUSrcA <= 1'b1;
+                ALUSrcB <= 2'b10;
+                SESF <= 1'b0;
+                ALU <= 3'b100;
+            end
+            4'd19: begin
+                IRd <= 1'b1;
+                ALUSrcA <= 1'b0;
+                ALUSrcB <= 2'b01;
+                PCWrite <= 1'b1;
+                PCSrc <= 1'b0;
+                R1Src <= 2'b00;
+                R2Src <= 1'b0;
+                SESF <= 1'b0;
+                PCWriteCond <= 1'b0;
+                MemRd <= 1'b0;
+                MemWr <= 1'b0;
+                MemToReg <= 1'b0;
+                ALU <= 3'b000;
+                RegWr <= 1'b0;
+                RegDst <= 1'b0;
+            end
+            4'd20: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                ALUSrcA <= 1'b0;
+                SESF <= 1'b1;
+                ALUSrcB <= 2'b10;
+                ALU <= 3'b000;
+                PCSrc <= 1'b0;
+                PCWrite = 1'b1;
+            end
+            4'd21: begin
+                // IRd <= 1'b1;
+                // ALUSrcA <= 1'b0;
+                // ALUSrcB <= 2'b01;
+                // PCWrite <= 1'b1;
+                // PCSrc <= 1'b0;
+                // R1Src <= 2'b00;
+                // R2Src <= 1'b0;
+                // SESF <= 1'b0;
+                // PCWriteCond <= 1'b0;
+                // MemRd <= 1'b0;
+                // MemWr <= 1'b0;
+                // MemToReg <= 1'b0;
+                // ALU <= 3'b000;
+                // RegWr <= 1'b0;
+                // RegDst <= 1'b0;
+                MemToReg <= 1'b0;
+                ALU <= 3'b001;
+                PCWrite <= 1'b0;
+                PCWriteCond <= 1'b0;
+                RegDst <= 1'b0;
+            end
+            4'd22: begin
+                IRd <= 1'b1;
+                ALUSrcA <= 1'b0;
+                ALUSrcB <= 2'b01;
+                PCWrite <= 1'b1;
+                PCSrc <= 1'b0;
+                R1Src <= 2'b00;
+                R2Src <= 1'b0;
+                SESF <= 1'b0;
+                PCWriteCond <= 1'b0;
+                MemRd <= 1'b0;
+                MemWr <= 1'b0;
+                MemToReg <= 1'b0;
+                ALU <= 3'b000;
+                RegWr <= 1'b0;
+                RegDst <= 1'b0;
+            end
+            4'd23: begin
+                IRd <= 1'b1;
+                ALUSrcA <= 1'b0;
+                ALUSrcB <= 2'b01;
+                PCWrite <= 1'b1;
+                PCSrc <= 1'b0;
+                R1Src <= 2'b00;
+                R2Src <= 1'b0;
+                SESF <= 1'b0;
+                PCWriteCond <= 1'b0;
+                MemRd <= 1'b0;
+                MemWr <= 1'b0;
+                MemToReg <= 1'b0;
+                ALU <= 3'b000;
+                RegWr <= 1'b0;
+                RegDst <= 1'b0;
+            end
+            4'd24: begin
+                IRd <= 1'b1;
+                ALUSrcA <= 1'b0;
+                ALUSrcB <= 2'b01;
+                PCWrite <= 1'b1;
+                PCSrc <= 1'b0;
+                R1Src <= 2'b00;
+                R2Src <= 1'b0;
+                SESF <= 1'b0;
+                PCWriteCond <= 1'b0;
+                MemRd <= 1'b0;
+                MemWr <= 1'b0;
+                MemToReg <= 1'b0;
+                ALU <= 3'b000;
+                RegWr <= 1'b0;
+                RegDst <= 1'b0;
+            end
+
+        endcase
+    end
+
+endmodule
 
 
