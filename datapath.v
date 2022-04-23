@@ -461,11 +461,12 @@ endmodule
 
 
 // ! posedge clk
-module Control(clk, rst, OpCode, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1Src, R2Src, SESF, PCWriteCond, MemRd, MemWr, MemToReg, ALU, RegWr, RegDst, BNEq, JE);
+module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1Src, R2Src, SESF, PCWriteCond, MemRd, MemWr, MemToReg, ALU, RegWr, RegDst, BNEq, JE);
     
     input clk;
     input rst;
     input [3:0] OpCode;
+    input [3:0] Func;
     
     output reg IRd, ALUSrcA, PCWrite, PCSrc, R2Src, SESF, PCWriteCond, MemRd, MemWr, MemToReg, RegWr, RegDst, JE, BNEq;
     output reg [1:0] ALUSrcB,R1Src;
@@ -484,58 +485,96 @@ module Control(clk, rst, OpCode, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1Src, R
         case (State)
             4'd0: begin
                 if(OpCode == 4'b1000 || OpCode == 4'b1100 || OpCode == 4'b1011 || OpCode == 4'b1111 || OpCode == 4'b0100 || OpCode == 4'b0101 || OpCode == 4'b0011) NextState <= 4'd1;
-                else if(OpCode == 4'b1001 || OpCode == 4'b1101 || OpCode == 4'b0111 || OpCode == 4'b0110 || OpCode == 4'b1010 || OpCode == 4'b1110 ||OpCode == 4'b0000) NextState <= 4'd4;
-                else NextState <= 4'd9;
+                else if(OpCode == 4'b1001 || OpCode == 4'b1101 || OpCode == 4'b0111 || OpCode == 4'b0110 || OpCode == 4'b1010 || OpCode == 4'b1110 ||OpCode == 4'b0000) NextState <= 4'd2;
+                else NextState <= 4'd3;
             end
             4'd1: begin
-                if(OpCode == 4'b0100)   NextState <= 4'd14;
-                else if(OpCode == 4'b0101)  NextState <= 4'd15;
-                else if(OpCode == 4'b0011)  NextState <= 4'd8;
-                else NextState <= 4'd2;
+                if(OpCode == 4'b1111)   NextState <= 4'd4;
+                else if(OpCode == 4'b1011)  NextState <= 4'd5;
+                else if(OpCode == 4'b1000)  NextState <= 4'd6;
+                else if(OpCode == 4'b1100)  NextState <= 4'd7;
+                else if(OpCode == 4'b0100)  NextState <= 4'd8;
+                else if(OpCode == 4'b0101)  NextState <= 4'd9;
+                else if(OpCode == 4'b0011)  NextState <= 4'd20;
             end
             4'd2: begin
-                NextState <= 4'd3;
+                if(OpCode == 4'b1010)   NextState <= 4'd10;
+                else if(OpCode == 4'b1001)  NextState <= 4'd11;
+                else if(OpCode == 4'b1110)  NextState <= 4'd12;
+                else if(OpCode == 4'b1101)  NextState <= 4'd13;
+                else if(OpCode == 4'b0110)  NextState <= 4'd14;
+                else if(OpCode == 4'b0111)  NextState <= 4'd15;
+                else if(OpCode == 4'b0000 && Func = 4'b0001)  NextState <= 4'd16;
+                else if(OpCode == 4'b0000 && Func = 4'b0010)  NextState <= 4'd17;
+                else if(OpCode == 4'b0000 && Func = 4'b0011)  NextState <= 4'd18;
+                
+            end
             end
             4'd3: begin
-                NextState <= 4'd0;
+                NextState <= 4'd19;
             end
             4'd4: begin
-                if(OpCode == 4'b0000) NextState <= 4'd7;
-                else if(OpCode == 4'b1010 || OpCode == 4'b1110) NextState <= 4'd6;
-                else NextState <= 4'd5;
+                NextState <= 4'd21;
             end
             4'd5: begin
-                NextState <= 4'd3;
+                NextState <= 4'd21;
             end
             4'd6: begin
-                NextState <= 4'd3;
+                NextState <= 4'd21;
             end
             4'd7: begin
-                NextState <= 4'd3;
+                NextState <= 4'd21;
             end
             4'd8: begin
                 NextState <= 4'd0;
             end
             4'd9: begin
-                NextState <= 4'd10;
+                NextState <= 4'd0;
             end
             4'd10: begin
-                if(OpCode == 4'd0001)   NextState <= 4'd11;
-                else    NextState <= 4'd13;
+                NextState <= 4'd21;
             end
             4'd11: begin
-                NextState <= 4'd12;
+                NextState <= 4'd21;
             end
             4'd12: begin
-                NextState <= 4'd0;
+                NextState <= 4'd21;
             end
             4'd13: begin
-                NextState <= 4'd0;
+                NextState <= 4'd21;
             end
             4'd14: begin
-                NextState <= 4'd0;
+                NextState <= 4'd21;
             end
             4'd15: begin
+                NextState <= 4'd21;
+            end
+            4'd16: begin
+                NextState <= 4'd21;
+            end
+            4'd17: begin
+                NextState <= 4'd21;
+            end
+            4'd18: begin
+                NextState <= 4'd21;
+            end
+            4'd19: begin
+                if(OpCode == 4'b0001)   NextState <= 4'd22;
+                else if(OpCode == 4'b0010)  NextState <= 4'd23;
+            end
+            4'd20: begin
+                NextState <= 4'd0;
+            end
+            4'd21: begin
+                NextState <= 4'd0;
+            end
+            4'd22: begin
+                NextState <= 4'd24;
+            end
+            4'd23: begin
+                NextState <= 4'd0;
+            end
+            4'd24: begin
                 NextState <= 4'd0;
             end
         endcase
