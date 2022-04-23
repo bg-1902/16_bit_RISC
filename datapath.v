@@ -3,7 +3,7 @@
 //
 
 `timescale 1ns/1ps
-`define STOPTIME 661
+`define STOPTIME 700
 
 module tb_multi_cycle();
 
@@ -77,11 +77,11 @@ module tb_multi_cycle();
             end
             else if(OpCode == 4'b0000)
             begin
-                $write("\tRD (R%0d): %hH \ttImmediate Data: %hH \tFunc Field:%b", uut.Datapath.RFile.ReadReg1, uut.Datapath.A_out, uut.Datapath.IR_out[7:4], uut.Datapath.Func);
+                $write("\tRD (R%0d): %hH \tImmediate Data: %hH \tFunc Field:%b", uut.Datapath.RFile.ReadReg1, uut.Datapath.A_out, uut.Datapath.IR_out[7:4], uut.Datapath.Func);
             end
             else if(OpCode == 4'b0001 ||OpCode == 4'b0010)
             begin
-                $write("\tRD (R%0d): %hH \tRP (R%0d): %hH \ttImmediate Data: %hH ", uut.Datapath.RFile.ReadReg1, uut.Datapath.A_out,uut.Datapath.RFile.ReadReg3, uut.Datapath.C_out,uut.Datapath.IR_out[7:0]);
+                $write("\tRD (R%0d): %hH \tRP (R%0d): %hH \tImmediate Data: %hH ", uut.Datapath.RFile.ReadReg3, uut.Datapath.C_out, uut.Datapath.RFile.ReadReg1, uut.Datapath.A_out, uut.Datapath.IR_out[7:0]);
             end
         end
         
@@ -98,6 +98,10 @@ module tb_multi_cycle();
             // Jump
             else if(Instruction[15:12] == 4'b0011) begin
                 $write("\tPC: %hH", uut.Datapath.PC_out);
+                $write("\tALUOut: %hH", uut.Datapath.ALUOut_out);
+                $write("\tALU Operation Done: %hH", uut.Datapath.ALUSrcA_m_out);
+                $write(" Add");
+                $write(" %hH", uut.Datapath.ALUSrcB_m_out);
             end
             
             // R-type + LW/SW
@@ -124,10 +128,13 @@ module tb_multi_cycle();
             if(Instruction[15:12] == 4'b0001) begin
                 $write("\tMemory[ALUOut]: %hH", uut.Datapath.DataMem.Memory[uut.Datapath.DataMem.ActualAddress]);
                 #1 $write("\tMDR: %hH", uut.Datapath.MDR_out);
+                // #1   $write("\tRD: R%0d\tReg[RD]: %hH", uut.Datapath.RFile.WriteRegister, uut.Datapath.RFile.Registers[uut.Datapath.RFile.WriteRegister]);
             end
             // Store
-            else if(Instruction[15:12] == 4'b0010)
-                #1 $write("\tMemory[ALUOut]: %hH\tB: %hH", uut.Datapath.DataMem.Memory[uut.Datapath.DataMem.Address[15:1]], uut.Datapath.B_out);
+            else if(Instruction[15:12] == 4'b0010)begin
+                #1 $write("\tMemory[ALUOut]: %hH", uut.Datapath.DataMem.Memory[uut.Datapath.DataMem.Address[15:1]]);
+                #1   $write("\tRD: R%0d\tReg[RD]: %hH", uut.Datapath.RFile.WriteRegister, uut.Datapath.RFile.Registers[uut.Datapath.RFile.WriteRegister]);
+            end
             // R-type
             else begin
                 #1;
@@ -139,7 +146,8 @@ module tb_multi_cycle();
         else begin
             #1;
             $write("State: WB");
-            $write("\t11RD: R%0dH\tReg[11RD]: %h", {2'b11, uut.Datapath.RD_l}, uut.Datapath.RFile.Registers[{2'b11, uut.Datapath.RD_l}]);
+            #1   $write("\tRD: R%0d\tReg[RD]: %hH", uut.Datapath.RFile.WriteRegister, uut.Datapath.RFile.Registers[uut.Datapath.RFile.WriteRegister]);
+            // $write("\t11RD: R%0dH\tReg[11RD]: %h", {2'b11, uut.Datapath.RD_l}, uut.Datapath.RFile.Registers[{2'b11, uut.Datapath.RD_l}]);
         
         end
         $write("\nControl Signals\t clk: %b, PCWrite: %b, PCWriteCond: %b, BNEq: %b, MemRd: %b, MemWr: %b, IRd: %b, IRWr: %b, RegWr: %b, RegDst: %b, MemToReg: %b, SESF: %b, JE: %b, ALUSrcA: %b, R1Src: %b, ALUSrcB: %b, PCSrc: %b, ALUCtrl: %b, OpCode: %b, Func: %b", uut.clk, uut.PCWrite, uut.PCWriteCond, uut.BNEq, uut.MemRd, uut.MemWr, uut.IRd, uut.IRWr, uut.RegWr, uut.RegDst, uut.MemToReg, uut.SESF, uut.JE, uut.ALUSrcA, uut.R1Src, uut.ALUSrcB, uut.PCSrc, uut.ALUCtrl, uut.OpCode, uut.Func);
@@ -242,7 +250,7 @@ module LeftShift (Output, Input);
 
     always @(*) 
     begin
-        Output <= {Input[15:1], 1'b0};
+        Output <= {Input[14:0], 1'b0};
     end
 endmodule
 
@@ -340,7 +348,7 @@ module regFile(clk, RegWr, ReadReg1, ReadReg2, ReadReg3, WriteRegister, WriteDat
 
     initial begin
         for(i=0; i<16; i = i+1) begin
-        Registers[i] <= 16'd3;
+        Registers[i] <= 16'd4;
         end
         // #`STOPTIME $writememh("registers.dat", Registers);
     end
@@ -1228,10 +1236,10 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // MemToReg <= 1'b0;
                 // ALU <= 3'b000;
                 // RegWr <= 1'b0;
-                // RegDst <= 1'b0;
+                RegDst <= 1'b1;
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b11;
-                ALU <= 3'b100;
+                ALU <= 3'b000;
             end
             5'd20: begin
                 // IRd <= 1'b1;
@@ -1313,7 +1321,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 // RegDst <= 1'b0;
                 MemRd <= 1'b0;
                 MemWr <= 1'b1;
-                RegDst <= 1'b1;
+                // RegDst <= 1'b1;
                 RegWr <= 1'b0;
             end
             5'd24: begin
