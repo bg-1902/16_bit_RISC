@@ -1,9 +1,9 @@
-//
-//
-//
+//Tanmay J Agrawal 2018B5A30728P
+//Akshit Patel 2018A8PS0094P
+//Bharat Gupta 2019A3PS0181P
 
 `timescale 1ns/1ps
-`define STOPTIME 700
+`define STOPTIME 1000
 
 module tb_multi_cycle();
 
@@ -15,8 +15,7 @@ module tb_multi_cycle();
         #3 rst = 1'b0;
     end
 
-    MIPS uut    (   .clk(clk),
-                    .rst(rst));
+    RISC_16 uut    (.clk(clk), .rst(rst));
     
     always #2 clk = ~clk;
 
@@ -54,14 +53,15 @@ module tb_multi_cycle();
             else if (OpCode == 4'b1001 || OpCode == 4'b1101 || OpCode == 4'b0111 || OpCode == 4'b0110 || OpCode == 4'b1010 || OpCode == 4'b1110) $write("\t(I type)");
             else $write("\t(Shift)");
 
-            $write("\nState: IF");
+            $write("\nStage: IF");
+            $write("\nState: %d", uut.ControlUnit.State);
             $write("\tPC: %hH", uut.Datapath.PC_out);
             $write("\tIR: %hH", uut.Datapath.IR_out);
         end
         
         // ID States
         else if(State == 5'd1 || State == 5'd2 || State == 5'd3) begin
-            $write("State: ID");
+            $write("Stage: ID"); $write("\nState: %d", uut.ControlUnit.State);
             #1;
             if(OpCode == 4'b1000 || OpCode == 4'b1100 || OpCode == 4'b1011 || OpCode == 4'b1111 || OpCode == 4'b0100 || OpCode == 4'b0101)
             begin
@@ -88,7 +88,7 @@ module tb_multi_cycle();
         // EX States
         else if(State == 5'd4 || State == 5'd5 || State == 5'd6 || State == 5'd7 ||State == 5'd8 ||State == 5'd9 || State == 5'd10 || State == 5'd11 ||State == 5'd12 ||State == 5'd13 ||State == 5'd14 || State == 5'd15 || State == 5'd16 || State == 5'd17 || State == 5'd18 || State == 5'd19 || State == 5'd20) begin
             #1;
-            $write("State: EX");
+            $write("Stage: EX"); $write("\nState: %d", uut.ControlUnit.State);
             
             // Branch
             if(Instruction[15:12] == 4'b0100 || Instruction[15:12] == 4'b0101)
@@ -123,7 +123,7 @@ module tb_multi_cycle();
         
         // MEM States
         else if(State == 5'd21 || State == 5'd22 || State == 5'd23) begin
-            $write("State: MEM");
+            $write("Stage: MEM"); $write("\nState: %d", uut.ControlUnit.State);
             // Load
             if(Instruction[15:12] == 4'b0001) begin
                 $write("\tMemory[ALUOut]: %hH", uut.Datapath.DataMem.Memory[uut.Datapath.DataMem.ActualAddress]);
@@ -145,7 +145,7 @@ module tb_multi_cycle();
         // WB States
         else begin
             #1;
-            $write("State: WB");
+            $write("Stage: WB"); $write("\nState: %d", uut.ControlUnit.State);
             #1   $write("\tRD: R%0d\tReg[RD]: %hH", uut.Datapath.RFile.WriteRegister, uut.Datapath.RFile.Registers[uut.Datapath.RFile.WriteRegister]);
             // $write("\t11RD: R%0dH\tReg[11RD]: %h", {2'b11, uut.Datapath.RD_l}, uut.Datapath.RFile.Registers[{2'b11, uut.Datapath.RD_l}]);
         
@@ -1003,7 +1003,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b00;
                 ALU <= 3'b001;
-                PCSrc <= 1'b1;
+                PCSrc <= 2'd1;
                 PCWriteCond = 1'b1;
                 BNEq = 1'b0;
                 RegDst = 1'b0;
@@ -1027,7 +1027,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 ALUSrcA <= 1'b1;
                 ALUSrcB <= 2'b00;
                 ALU <= 3'b001;
-                PCSrc <= 1'b1;
+                PCSrc <= 2'd1;
                 PCWriteCond = 1'b1;
                 BNEq = 1'b1;
                 RegDst = 1'b0;
@@ -1261,7 +1261,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
                 SESF <= 2'b1;
                 ALUSrcB <= 2'b10;
                 ALU <= 3'b000;
-                PCSrc <= 1'b0;
+                PCSrc <= 2'd2;
                 PCWrite = 1'b1;
             end
             5'd21: begin
@@ -1352,7 +1352,7 @@ module Control(clk, rst, OpCode, Func, IRd, ALUSrcA, ALUSrcB, PCWrite, PCSrc, R1
 
 endmodule
 
-module MIPS(clk, rst);
+module RISC_16(clk, rst);
     input clk, rst;
 
     wire IRd, ALUSrcA, PCWrite, IRWr, PCWriteCond, MemRd, MemWr, MemToReg, RegWr, RegDst, JE, BNEq;

@@ -1,0 +1,880 @@
+WARNING: datapath.v:268: $readmemh(instruction.dat): Not enough words in the file for the requested range [0:32767].
+VCD info: dumpfile output.vcd opened for output.
+
+[T = 5ns]	# 1 Instruction: 8110 	(R type)
+Stage: IF
+State:  0	PC: 0002H	IR: 8110H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: ID
+State:  1	A (R1): 0004H	B (R0): 0004H	C (R1): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: EX
+State:  6	ALUOut: 0008H	ALU Operation Done: 0004H Add 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: MEM
+State: 21	RD: R1	Reg[RD]: 0008H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+
+[T = 21ns]	# 2 Instruction: a13a 	(I type)
+Stage: IF
+State:  0	PC: 0004H	IR: a13aH
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1010, Func: 1010
+Stage: ID
+State:  2	RD (R1): 0008H 	 Immediate Data: 3aH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1010, Func: 1010
+Stage: EX
+State: 10	ALUOut: 0042H	ALU Operation Done: 0008H Add 003aH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 1010, Func: 1010
+Stage: MEM
+State: 21	RD: R1	Reg[RD]: 0042H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 1010, Func: 1010
+
+[T = 37ns]	# 3 Instruction: 8220 	(R type)
+Stage: IF
+State:  0	PC: 0006H	IR: 8220H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: ID
+State:  1	A (R2): 0004H	B (R0): 0004H	C (R2): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: EX
+State:  6	ALUOut: 0008H	ALU Operation Done: 0004H Add 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: MEM
+State: 21	RD: R2	Reg[RD]: 0008H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+
+[T = 53ns]	# 4 Instruction: a214 	(I type)
+Stage: IF
+State:  0	PC: 0008H	IR: a214H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1010, Func: 0100
+Stage: ID
+State:  2	RD (R2): 0008H 	 Immediate Data: 14H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1010, Func: 0100
+Stage: EX
+State: 10	ALUOut: 001cH	ALU Operation Done: 0008H Add 0014H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 1010, Func: 0100
+Stage: MEM
+State: 21	RD: R2	Reg[RD]: 001cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 1010, Func: 0100
+
+[T = 69ns]	# 5 Instruction: c314 	(R type)
+Stage: IF
+State:  0	PC: 000aH	IR: c314H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1100, Func: 0100
+Stage: ID
+State:  1	A (R1): 0042H	B (R4): 0004H	C (R3): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1100, Func: 0100
+Stage: EX
+State:  7	ALUOut: 003eH	ALU Operation Done: 0042H Subtract 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 001, OpCode: 1100, Func: 0100
+Stage: MEM
+State: 21	RD: R3	Reg[RD]: 003eH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 001, OpCode: 1100, Func: 0100
+
+[T = 85ns]	# 6 Instruction: e324 	(I type)
+Stage: IF
+State:  0	PC: 000cH	IR: e324H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1110, Func: 0100
+Stage: ID
+State:  2	RD (R3): 003eH 	 Immediate Data: 24H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1110, Func: 0100
+Stage: EX
+State: 12	ALUOut: 001aH	ALU Operation Done: 003eH Subtract 0024H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 001, OpCode: 1110, Func: 0100
+Stage: MEM
+State: 21	RD: R3	Reg[RD]: 001aH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 001, OpCode: 1110, Func: 0100
+
+[T = 101ns]	# 7 Instruction: 0371 	(Shift)
+Stage: IF
+State:  0	PC: 000eH	IR: 0371H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0001
+Stage: ID
+State:  2	RD (R3): 001aH 	Immediate Data: 7H 	Func Field:0001
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0001
+Stage: EX
+State: 16	ALUOut: 0d00H	ALU Operation Done: 001aH SLL 0007H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 010, OpCode: 0000, Func: 0001
+Stage: MEM
+State: 21	RD: R3	Reg[RD]: 0d00H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 010, OpCode: 0000, Func: 0001
+
+[T = 117ns]	# 8 Instruction: 0143 	(Shift)
+Stage: IF
+State:  0	PC: 0010H	IR: 0143H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0011
+Stage: ID
+State:  2	RD (R1): 0042H 	Immediate Data: 4H 	Func Field:0011
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0011
+Stage: EX
+State: 18	ALUOut: 0004H	ALU Operation Done: 0042H SAR 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 100, OpCode: 0000, Func: 0011
+Stage: MEM
+State: 21	RD: R1	Reg[RD]: 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 100, OpCode: 0000, Func: 0011
+
+[T = 133ns]	# 9 Instruction: b632 	(R type)
+Stage: IF
+State:  0	PC: 0012H	IR: b632H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1011, Func: 0010
+Stage: ID
+State:  1	A (R3): 0d00H	B (R2): 001cH	C (R6): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1011, Func: 0010
+Stage: EX
+State:  5	ALUOut: ffffH	ALU Operation Done: 0d00H NAND 001cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 101, OpCode: 1011, Func: 0010
+Stage: MEM
+State: 21	RD: R6	Reg[RD]: ffffH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 101, OpCode: 1011, Func: 0010
+
+[T = 149ns]	#10 Instruction: 75ae 	(I type)
+Stage: IF
+State:  0	PC: 0014H	IR: 75aeH
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0111, Func: 1110
+Stage: ID
+State:  2	RD (R5): 0004H 	 Immediate Data: aeH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0111, Func: 1110
+Stage: EX
+State: 15	ALUOut: fffbH	ALU Operation Done: 0004H NAND ffaeH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 101, OpCode: 0111, Func: 1110
+Stage: MEM
+State: 21	RD: R5	Reg[RD]: fffbH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 101, OpCode: 0111, Func: 1110
+
+[T = 165ns]	#11 Instruction: 8501 	(R type)
+Stage: IF
+State:  0	PC: 0016H	IR: 8501H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+Stage: ID
+State:  1	A (R0): 0004H	B (R1): 0004H	C (R5): fffbH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+Stage: EX
+State:  6	ALUOut: 0008H	ALU Operation Done: 0004H Add 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+Stage: MEM
+State: 21	RD: R5	Reg[RD]: 0008H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+
+[T = 181ns]	#12 Instruction: e3dc 	(I type)
+Stage: IF
+State:  0	PC: 0018H	IR: e3dcH
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1110, Func: 1100
+Stage: ID
+State:  2	RD (R3): 0d00H 	 Immediate Data: dcH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1110, Func: 1100
+Stage: EX
+State: 12	ALUOut: 0c24H	ALU Operation Done: 0d00H Subtract 00dcH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 001, OpCode: 1110, Func: 1100
+Stage: MEM
+State: 21	RD: R3	Reg[RD]: 0c24H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 001, OpCode: 1110, Func: 1100
+
+[T = 197ns]	#13 Instruction: 4351 	(R type)
+Stage: IF
+State:  0	PC: 001aH	IR: 4351H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 0001
+Stage: ID
+State:  1	A (R5): 0008H	B (R1): 0004H	C (R3): 0c24H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 0001
+Stage: EX
+State:  8	Zero: 0H	PC: 001aH	Branch Taken: 0
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 1, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 01, ALUCtrl: 001, OpCode: 0100, Func: 0001
+
+[T = 209ns]	#14 Instruction: 8c31 	(R type)
+Stage: IF
+State:  0	PC: 001cH	IR: 8c31H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+Stage: ID
+State:  1	A (R3): 0c24H	B (R1): 0004H	C (R12): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+Stage: EX
+State:  6	ALUOut: 0c28H	ALU Operation Done: 0c24H Add 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+Stage: MEM
+State: 21	RD: R12	Reg[RD]: 0c28H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+
+[T = 225ns]	#15 Instruction: 8dc4 	(R type)
+Stage: IF
+State:  0	PC: 001eH	IR: 8dc4H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0100
+Stage: ID
+State:  1	A (R12): 0c28H	B (R4): 0004H	C (R13): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0100
+Stage: EX
+State:  6	ALUOut: 0c2cH	ALU Operation Done: 0c28H Add 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0100
+Stage: MEM
+State: 21	RD: R13	Reg[RD]: 0c2cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0100
+
+[T = 241ns]	#16 Instruction: 4351 	(R type)
+Stage: IF
+State:  0	PC: 0020H	IR: 4351H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 0001
+Stage: ID
+State:  1	A (R5): 0008H	B (R1): 0004H	C (R3): 0c24H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 0001
+Stage: EX
+State:  8	Zero: 0H	PC: 0020H	Branch Taken: 0
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 1, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 01, ALUCtrl: 001, OpCode: 0100, Func: 0001
+
+[T = 253ns]	#17 Instruction: 3002 	(Jump)
+Stage: IF
+State:  0	PC: 0022H	IR: 3002H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0010
+Stage: ID
+State:  1	Immediate Adress PC Relative: 0002H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0010
+Stage: EX
+State: 20	PC: 0024H	ALUOut: 0024H	ALU Operation Done: 0024H Add 0002H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0010
+
+[T = 265ns]	#18 Instruction: 8c31 	(R type)
+Stage: IF
+State:  0	PC: 0026H	IR: 8c31H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+Stage: ID
+State:  1	A (R3): 0c24H	B (R1): 0004H	C (R12): 0c28H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+Stage: EX
+State:  6	ALUOut: 0c28H	ALU Operation Done: 0c24H Add 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+Stage: MEM
+State: 21	RD: R12	Reg[RD]: 0c28H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0001
+
+[T = 281ns]	#19 Instruction: 8dc4 	(R type)
+Stage: IF
+State:  0	PC: 0028H	IR: 8dc4H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0100
+Stage: ID
+State:  1	A (R12): 0c28H	B (R4): 0004H	C (R13): 0c2cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0100
+Stage: EX
+State:  6	ALUOut: 0c2cH	ALU Operation Done: 0c28H Add 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0100
+Stage: MEM
+State: 21	RD: R13	Reg[RD]: 0c2cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0100
+
+[T = 297ns]	#20 Instruction: 8800 	(R type)
+Stage: IF
+State:  0	PC: 002aH	IR: 8800H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: ID
+State:  1	A (R0): 0004H	B (R0): 0004H	C (R8): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: EX
+State:  6	ALUOut: 0008H	ALU Operation Done: 0004H Add 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: MEM
+State: 21	RD: R8	Reg[RD]: 0008H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+
+[T = 313ns]	#21 Instruction: 2400 	(Store)
+Stage: IF
+State:  0	PC: 002cH	IR: 2400H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0000
+Stage: ID
+State:  3	RD (R4): 0004H 	RP (R8): 0008H 	Immediate Data: 00H 
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0000
+Stage: EX
+State: 19	ALUOut: 0008H	ALU Operation Done: 0008H Add 0000H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0000
+Stage: MEM
+State: 23	Memory[ALUOut]: 0c2cH	RD: R13	Reg[RD]: 0c2cH
+Control Signals	 clk: 1, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 1, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0000
+
+[T = 329ns]	#22 Instruction: 1800 	(Load)
+Stage: IF
+State:  0	PC: 002eH	IR: 1800H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0000
+Stage: ID
+State:  3	RD (R8): 0008H 	RP (R8): 0008H 	Immediate Data: 00H 
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0000
+Stage: EX
+State: 19	ALUOut: 0008H	ALU Operation Done: 0008H Add 0000H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0000
+Stage: MEM
+State: 22	Memory[ALUOut]: 0c2cH	MDR: 0c2cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 1, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0000
+Stage: WB
+State: 24	RD: R14	Reg[RD]: 0c2cH
+Control Signals	 clk: 1, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 1, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 1, MemToReg: 1, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0000
+
+[T = 349ns]	#23 Instruction: 8650 	(R type)
+Stage: IF
+State:  0	PC: 0030H	IR: 8650H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: ID
+State:  1	A (R5): 0008H	B (R0): 0004H	C (R6): ffffH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: EX
+State:  6	ALUOut: 000cH	ALU Operation Done: 0008H Add 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: MEM
+State: 21	RD: R6	Reg[RD]: 000cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+
+[T = 365ns]	#24 Instruction: 8700 	(R type)
+Stage: IF
+State:  0	PC: 0032H	IR: 8700H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: ID
+State:  1	A (R0): 0004H	B (R0): 0004H	C (R7): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: EX
+State:  6	ALUOut: 0008H	ALU Operation Done: 0004H Add 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+Stage: MEM
+State: 21	RD: R7	Reg[RD]: 0008H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 000, OpCode: 1000, Func: 0000
+
+[T = 381ns]	#25 Instruction: 9607 	(I type)
+Stage: IF
+State:  0	PC: 0034H	IR: 9607H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 0111
+Stage: ID
+State:  2	RD (R6): 000cH 	 Immediate Data: 07H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 0111
+Stage: EX
+State: 11	ALUOut: 0013H	ALU Operation Done: 000cH Add 0007H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 0111
+Stage: MEM
+State: 21	RD: R6	Reg[RD]: 0013H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 0111
+
+[T = 397ns]	#26 Instruction: 970f 	(I type)
+Stage: IF
+State:  0	PC: 0036H	IR: 970fH
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 1111
+Stage: ID
+State:  2	RD (R7): 0008H 	 Immediate Data: 0fH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 1111
+Stage: EX
+State: 11	ALUOut: 0017H	ALU Operation Done: 0008H Add 000fH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 1111
+Stage: MEM
+State: 21	RD: R7	Reg[RD]: 0017H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 1111
+
+[T = 413ns]	#27 Instruction: d704 	(I type)
+Stage: IF
+State:  0	PC: 0038H	IR: d704H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1101, Func: 0100
+Stage: ID
+State:  2	RD (R7): 0017H 	 Immediate Data: 04H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1101, Func: 0100
+Stage: EX
+State: 13	ALUOut: 0013H	ALU Operation Done: 0017H Subtract 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 001, OpCode: 1101, Func: 0100
+Stage: MEM
+State: 21	RD: R7	Reg[RD]: 0013H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 001, OpCode: 1101, Func: 0100
+
+[T = 429ns]	#28 Instruction: d601 	(I type)
+Stage: IF
+State:  0	PC: 003aH	IR: d601H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1101, Func: 0001
+Stage: ID
+State:  2	RD (R6): 0013H 	 Immediate Data: 01H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1101, Func: 0001
+Stage: EX
+State: 13	ALUOut: 0012H	ALU Operation Done: 0013H Subtract 0001H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 001, OpCode: 1101, Func: 0001
+Stage: MEM
+State: 21	RD: R6	Reg[RD]: 0012H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 001, OpCode: 1101, Func: 0001
+
+[T = 445ns]	#29 Instruction: 0731 	(Shift)
+Stage: IF
+State:  0	PC: 003cH	IR: 0731H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0001
+Stage: ID
+State:  2	RD (R7): 0013H 	Immediate Data: 3H 	Func Field:0001
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0001
+Stage: EX
+State: 16	ALUOut: 0098H	ALU Operation Done: 0013H SLL 0003H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 010, OpCode: 0000, Func: 0001
+Stage: MEM
+State: 21	RD: R7	Reg[RD]: 0098H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 010, OpCode: 0000, Func: 0001
+
+[T = 461ns]	#30 Instruction: 0712 	(Shift)
+Stage: IF
+State:  0	PC: 003eH	IR: 0712H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0010
+Stage: ID
+State:  2	RD (R7): 0098H 	Immediate Data: 1H 	Func Field:0010
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0010
+Stage: EX
+State: 17	ALUOut: 004cH	ALU Operation Done: 0098H SLR 0001H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 011, OpCode: 0000, Func: 0010
+Stage: MEM
+State: 21	RD: R7	Reg[RD]: 004cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 011, OpCode: 0000, Func: 0010
+
+[T = 477ns]	#31 Instruction: 0612 	(Shift)
+Stage: IF
+State:  0	PC: 0040H	IR: 0612H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0010
+Stage: ID
+State:  2	RD (R6): 0012H 	Immediate Data: 1H 	Func Field:0010
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0010
+Stage: EX
+State: 17	ALUOut: 0009H	ALU Operation Done: 0012H SLR 0001H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 011, OpCode: 0000, Func: 0010
+Stage: MEM
+State: 21	RD: R6	Reg[RD]: 0009H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 011, OpCode: 0000, Func: 0010
+
+[T = 493ns]	#32 Instruction: 98ff 	(I type)
+Stage: IF
+State:  0	PC: 0042H	IR: 98ffH
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 1111
+Stage: ID
+State:  2	RD (R8): 0008H 	 Immediate Data: ffH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 1111
+Stage: EX
+State: 11	ALUOut: 0007H	ALU Operation Done: 0008H Add ffffH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 1111
+Stage: MEM
+State: 21	RD: R8	Reg[RD]: 0007H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 1001, Func: 1111
+
+[T = 509ns]	#33 Instruction: 0813 	(Shift)
+Stage: IF
+State:  0	PC: 0044H	IR: 0813H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0011
+Stage: ID
+State:  2	RD (R8): 0007H 	Immediate Data: 1H 	Func Field:0011
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0000, Func: 0011
+Stage: EX
+State: 18	ALUOut: 0003H	ALU Operation Done: 0007H SAR 0001H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 100, OpCode: 0000, Func: 0011
+Stage: MEM
+State: 21	RD: R8	Reg[RD]: 0003H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 10, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 100, OpCode: 0000, Func: 0011
+
+[T = 525ns]	#34 Instruction: b800 	(R type)
+Stage: IF
+State:  0	PC: 0046H	IR: b800H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1011, Func: 0000
+Stage: ID
+State:  1	A (R0): 0004H	B (R0): 0004H	C (R8): 0003H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1011, Func: 0000
+Stage: EX
+State:  5	ALUOut: fffbH	ALU Operation Done: 0004H NAND 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 101, OpCode: 1011, Func: 0000
+Stage: MEM
+State: 21	RD: R8	Reg[RD]: fffbH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 101, OpCode: 1011, Func: 0000
+
+[T = 541ns]	#35 Instruction: f860 	(R type)
+Stage: IF
+State:  0	PC: 0048H	IR: f860H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1111, Func: 0000
+Stage: ID
+State:  1	A (R6): 0009H	B (R0): 0004H	C (R8): fffbH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1111, Func: 0000
+Stage: EX
+State:  4	ALUOut: 000dH	ALU Operation Done: 0009HOR 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 110, OpCode: 1111, Func: 0000
+Stage: MEM
+State: 21	RD: R8	Reg[RD]: 000dH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 110, OpCode: 1111, Func: 0000
+
+[T = 557ns]	#36 Instruction: f770 	(R type)
+Stage: IF
+State:  0	PC: 004aH	IR: f770H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1111, Func: 0000
+Stage: ID
+State:  1	A (R7): 004cH	B (R0): 0004H	C (R7): 004cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 1111, Func: 0000
+Stage: EX
+State:  4	ALUOut: 004cH	ALU Operation Done: 004cHOR 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 110, OpCode: 1111, Func: 0000
+Stage: MEM
+State: 21	RD: R7	Reg[RD]: 004cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 10, ALUCtrl: 110, OpCode: 1111, Func: 0000
+
+[T = 573ns]	#37 Instruction: 78ff 	(I type)
+Stage: IF
+State:  0	PC: 004cH	IR: 78ffH
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0111, Func: 1111
+Stage: ID
+State:  2	RD (R8): 000dH 	 Immediate Data: ffH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0111, Func: 1111
+Stage: EX
+State: 15	ALUOut: fff2H	ALU Operation Done: 000dH NAND ffffH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 101, OpCode: 0111, Func: 1111
+Stage: MEM
+State: 21	RD: R8	Reg[RD]: fff2H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 101, OpCode: 0111, Func: 1111
+
+[T = 589ns]	#38 Instruction: 6800 	(I type)
+Stage: IF
+State:  0	PC: 004eH	IR: 6800H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: ID
+State:  2	RD (R8): fff2H 	 Immediate Data: 00H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: EX
+State: 14	ALUOut: fff2H	ALU Operation Done: fff2HOR 0000H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+Stage: MEM
+State: 21	RD: R8	Reg[RD]: fff2H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+
+[T = 605ns]	#39 Instruction: 6700 	(I type)
+Stage: IF
+State:  0	PC: 0050H	IR: 6700H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: ID
+State:  2	RD (R7): 004cH 	 Immediate Data: 00H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: EX
+State: 14	ALUOut: 004cH	ALU Operation Done: 004cHOR 0000H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+Stage: MEM
+State: 21	RD: R7	Reg[RD]: 004cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+
+[T = 621ns]	#40 Instruction: 4178 	(R type)
+Stage: IF
+State:  0	PC: 0052H	IR: 4178H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 1000
+Stage: ID
+State:  1	A (R7): 004cH	B (R8): fff2H	C (R1): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 1000
+Stage: EX
+State:  8	Zero: 0H	PC: 0052H	Branch Taken: 0
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 1, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 01, ALUCtrl: 001, OpCode: 0100, Func: 1000
+
+[T = 633ns]	#41 Instruction: 5188 	(R type)
+Stage: IF
+State:  0	PC: 0054H	IR: 5188H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0101, Func: 1000
+Stage: ID
+State:  1	A (R8): fff2H	B (R8): fff2H	C (R1): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0101, Func: 1000
+Stage: EX
+State:  9	Zero: 1H	PC: 0054H	Branch Taken: 0
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 1, BNEq: 1, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 01, ALUCtrl: 001, OpCode: 0101, Func: 1000
+
+[T = 645ns]	#42 Instruction: 2001 	(Store)
+Stage: IF
+State:  0	PC: 0056H	IR: 2001H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: ID
+State:  3	RD (R0): 0004H 	RP (R8): fff2H 	Immediate Data: 01H 
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: EX
+State: 19	ALUOut: fff4H	ALU Operation Done: fff2H Add 0002H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: MEM
+State: 23	Memory[ALUOut]: 0c28H	RD: R12	Reg[RD]: 0c28H
+Control Signals	 clk: 1, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 1, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+
+[T = 661ns]	#43 Instruction: 1401 	(Load)
+Stage: IF
+State:  0	PC: 0058H	IR: 1401H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: ID
+State:  3	RD (R4): 0004H 	RP (R8): fff2H 	Immediate Data: 01H 
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: EX
+State: 19	ALUOut: fff4H	ALU Operation Done: fff2H Add 0002H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: MEM
+State: 22	Memory[ALUOut]: 0c28H	MDR: 0c28H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 1, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: WB
+State: 24	RD: R13	Reg[RD]: 0c28H
+Control Signals	 clk: 1, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 1, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 1, MemToReg: 1, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+
+[T = 681ns]	#44 Instruction: 3ff3 	(Jump)
+Stage: IF
+State:  0	PC: 005aH	IR: 3ff3H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+Stage: ID
+State:  1	Immediate Adress PC Relative: fff3H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+Stage: EX
+State: 20	PC: 004dH	ALUOut: 004dH	ALU Operation Done: 004dH Add fff3H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+
+[T = 693ns]	#45 Instruction: 6800 	(I type)
+Stage: IF
+State:  0	PC: 004fH	IR: 6800H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: ID
+State:  2	RD (R8): fff2H 	 Immediate Data: 00H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: EX
+State: 14	ALUOut: fff2H	ALU Operation Done: fff2HOR 0000H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+Stage: MEM
+State: 21	RD: R8	Reg[RD]: fff2H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+
+[T = 709ns]	#46 Instruction: 6700 	(I type)
+Stage: IF
+State:  0	PC: 0051H	IR: 6700H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: ID
+State:  2	RD (R7): 004cH 	 Immediate Data: 00H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: EX
+State: 14	ALUOut: 004cH	ALU Operation Done: 004cHOR 0000H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+Stage: MEM
+State: 21	RD: R7	Reg[RD]: 004cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+
+[T = 725ns]	#47 Instruction: 4178 	(R type)
+Stage: IF
+State:  0	PC: 0053H	IR: 4178H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 1000
+Stage: ID
+State:  1	A (R7): 004cH	B (R8): fff2H	C (R1): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 1000
+Stage: EX
+State:  8	Zero: 0H	PC: 0053H	Branch Taken: 0
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 1, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 01, ALUCtrl: 001, OpCode: 0100, Func: 1000
+
+[T = 737ns]	#48 Instruction: 5188 	(R type)
+Stage: IF
+State:  0	PC: 0055H	IR: 5188H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0101, Func: 1000
+Stage: ID
+State:  1	A (R8): fff2H	B (R8): fff2H	C (R1): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0101, Func: 1000
+Stage: EX
+State:  9	Zero: 1H	PC: 0055H	Branch Taken: 0
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 1, BNEq: 1, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 01, ALUCtrl: 001, OpCode: 0101, Func: 1000
+
+[T = 749ns]	#49 Instruction: 2001 	(Store)
+Stage: IF
+State:  0	PC: 0057H	IR: 2001H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: ID
+State:  3	RD (R0): 0004H 	RP (R8): fff2H 	Immediate Data: 01H 
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: EX
+State: 19	ALUOut: fff4H	ALU Operation Done: fff2H Add 0002H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: MEM
+State: 23	Memory[ALUOut]: 0c28H	RD: R12	Reg[RD]: 0c28H
+Control Signals	 clk: 1, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 1, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+
+[T = 765ns]	#50 Instruction: 1401 	(Load)
+Stage: IF
+State:  0	PC: 0059H	IR: 1401H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: ID
+State:  3	RD (R4): 0004H 	RP (R8): fff2H 	Immediate Data: 01H 
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: EX
+State: 19	ALUOut: fff4H	ALU Operation Done: fff2H Add 0002H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: MEM
+State: 22	Memory[ALUOut]: 0c28H	MDR: 0c28H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 1, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: WB
+State: 24	RD: R13	Reg[RD]: 0c28H
+Control Signals	 clk: 1, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 1, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 1, MemToReg: 1, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+
+[T = 785ns]	#51 Instruction: 3ff3 	(Jump)
+Stage: IF
+State:  0	PC: 005bH	IR: 3ff3H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+Stage: ID
+State:  1	Immediate Adress PC Relative: fff3H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+Stage: EX
+State: 20	PC: 004eH	ALUOut: 004eH	ALU Operation Done: 004eH Add fff3H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+
+[T = 797ns]	#52 Instruction: 6700 	(I type)
+Stage: IF
+State:  0	PC: 0050H	IR: 6700H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: ID
+State:  2	RD (R7): 004cH 	 Immediate Data: 00H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: EX
+State: 14	ALUOut: 004cH	ALU Operation Done: 004cHOR 0000H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+Stage: MEM
+State: 21	RD: R7	Reg[RD]: 004cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+
+[T = 813ns]	#53 Instruction: 4178 	(R type)
+Stage: IF
+State:  0	PC: 0052H	IR: 4178H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 1000
+Stage: ID
+State:  1	A (R7): 004cH	B (R8): fff2H	C (R1): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 1000
+Stage: EX
+State:  8	Zero: 0H	PC: 0052H	Branch Taken: 0
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 1, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 01, ALUCtrl: 001, OpCode: 0100, Func: 1000
+
+[T = 825ns]	#54 Instruction: 5188 	(R type)
+Stage: IF
+State:  0	PC: 0054H	IR: 5188H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0101, Func: 1000
+Stage: ID
+State:  1	A (R8): fff2H	B (R8): fff2H	C (R1): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0101, Func: 1000
+Stage: EX
+State:  9	Zero: 1H	PC: 0054H	Branch Taken: 0
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 1, BNEq: 1, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 01, ALUCtrl: 001, OpCode: 0101, Func: 1000
+
+[T = 837ns]	#55 Instruction: 2001 	(Store)
+Stage: IF
+State:  0	PC: 0056H	IR: 2001H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: ID
+State:  3	RD (R0): 0004H 	RP (R8): fff2H 	Immediate Data: 01H 
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: EX
+State: 19	ALUOut: fff4H	ALU Operation Done: fff2H Add 0002H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: MEM
+State: 23	Memory[ALUOut]: 0c28H	RD: R12	Reg[RD]: 0c28H
+Control Signals	 clk: 1, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 1, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+
+[T = 853ns]	#56 Instruction: 1401 	(Load)
+Stage: IF
+State:  0	PC: 0058H	IR: 1401H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: ID
+State:  3	RD (R4): 0004H 	RP (R8): fff2H 	Immediate Data: 01H 
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: EX
+State: 19	ALUOut: fff4H	ALU Operation Done: fff2H Add 0002H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: MEM
+State: 22	Memory[ALUOut]: 0c28H	MDR: 0c28H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 1, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: WB
+State: 24	RD: R13	Reg[RD]: 0c28H
+Control Signals	 clk: 1, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 1, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 1, MemToReg: 1, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+
+[T = 873ns]	#57 Instruction: 3ff3 	(Jump)
+Stage: IF
+State:  0	PC: 005aH	IR: 3ff3H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+Stage: ID
+State:  1	Immediate Adress PC Relative: fff3H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+Stage: EX
+State: 20	PC: 004dH	ALUOut: 004dH	ALU Operation Done: 004dH Add fff3H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+
+[T = 885ns]	#58 Instruction: 6800 	(I type)
+Stage: IF
+State:  0	PC: 004fH	IR: 6800H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: ID
+State:  2	RD (R8): fff2H 	 Immediate Data: 00H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: EX
+State: 14	ALUOut: fff2H	ALU Operation Done: fff2HOR 0000H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+Stage: MEM
+State: 21	RD: R8	Reg[RD]: fff2H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+
+[T = 901ns]	#59 Instruction: 6700 	(I type)
+Stage: IF
+State:  0	PC: 0051H	IR: 6700H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: ID
+State:  2	RD (R7): 004cH 	 Immediate Data: 00H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: EX
+State: 14	ALUOut: 004cH	ALU Operation Done: 004cHOR 0000H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+Stage: MEM
+State: 21	RD: R7	Reg[RD]: 004cH
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+
+[T = 917ns]	#60 Instruction: 4178 	(R type)
+Stage: IF
+State:  0	PC: 0053H	IR: 4178H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 1000
+Stage: ID
+State:  1	A (R7): 004cH	B (R8): fff2H	C (R1): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0100, Func: 1000
+Stage: EX
+State:  8	Zero: 0H	PC: 0053H	Branch Taken: 0
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 1, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 01, ALUCtrl: 001, OpCode: 0100, Func: 1000
+
+[T = 929ns]	#61 Instruction: 5188 	(R type)
+Stage: IF
+State:  0	PC: 0055H	IR: 5188H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0101, Func: 1000
+Stage: ID
+State:  1	A (R8): fff2H	B (R8): fff2H	C (R1): 0004H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0101, Func: 1000
+Stage: EX
+State:  9	Zero: 1H	PC: 0055H	Branch Taken: 0
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 1, BNEq: 1, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 1, R1Src: 01, ALUSrcB: 00, PCSrc: 01, ALUCtrl: 001, OpCode: 0101, Func: 1000
+
+[T = 941ns]	#62 Instruction: 2001 	(Store)
+Stage: IF
+State:  0	PC: 0057H	IR: 2001H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: ID
+State:  3	RD (R0): 0004H 	RP (R8): fff2H 	Immediate Data: 01H 
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: EX
+State: 19	ALUOut: fff4H	ALU Operation Done: fff2H Add 0002H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+Stage: MEM
+State: 23	Memory[ALUOut]: 0c28H	RD: R12	Reg[RD]: 0c28H
+Control Signals	 clk: 1, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 1, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0010, Func: 0001
+
+[T = 957ns]	#63 Instruction: 1401 	(Load)
+Stage: IF
+State:  0	PC: 0059H	IR: 1401H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: ID
+State:  3	RD (R4): 0004H 	RP (R8): fff2H 	Immediate Data: 01H 
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: EX
+State: 19	ALUOut: fff4H	ALU Operation Done: fff2H Add 0002H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: MEM
+State: 22	Memory[ALUOut]: 0c28H	MDR: 0c28H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 1, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 1, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+Stage: WB
+State: 24	RD: R13	Reg[RD]: 0c28H
+Control Signals	 clk: 1, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 1, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 1, RegDst: 1, MemToReg: 1, SESF: 00, JE: 0, ALUSrcA: 1, R1Src: 00, ALUSrcB: 11, PCSrc: 10, ALUCtrl: 000, OpCode: 0001, Func: 0001
+
+[T = 977ns]	#64 Instruction: 3ff3 	(Jump)
+Stage: IF
+State:  0	PC: 005bH	IR: 3ff3H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+Stage: ID
+State:  1	Immediate Adress PC Relative: fff3H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+Stage: EX
+State: 20	PC: 004eH	ALUOut: 004eH	ALU Operation Done: 004eH Add fff3H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 1, ALUSrcA: 0, R1Src: 01, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 000, OpCode: 0011, Func: 0011
+
+[T = 989ns]	#65 Instruction: 6700 	(I type)
+Stage: IF
+State:  0	PC: 0050H	IR: 6700H
+Control Signals	 clk: 0, PCWrite: 1, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 1, IRWr: 1, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 00, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: ID
+State:  2	RD (R7): 004cH 	 Immediate Data: 00H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 00, JE: 0, ALUSrcA: 0, R1Src: 10, ALUSrcB: 01, PCSrc: 10, ALUCtrl: 000, OpCode: 0110, Func: 0000
+Stage: EX
+State: 14	ALUOut: 004cH	ALU Operation Done: 004cHOR 0000H
+Control Signals	 clk: 0, PCWrite: 0, PCWriteCond: 0, BNEq: 0, MemRd: 0, MemWr: 0, IRd: 0, IRWr: 0, RegWr: 0, RegDst: 0, MemToReg: 0, SESF: 01, JE: 0, ALUSrcA: 1, R1Src: 10, ALUSrcB: 10, PCSrc: 10, ALUCtrl: 110, OpCode: 0110, Func: 0000
+datapath.v:25: $finish called at 1000000 (1ps)
